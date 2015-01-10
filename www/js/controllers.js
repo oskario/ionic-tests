@@ -35,6 +35,8 @@ angular.module('starter.controllers', [])
     }
   ];
 
+  $scope.cashLeft = 1250.00;
+
   $ionicPopover.fromTemplateUrl('templates/dialog-new-bill-method.html', {
     scope: $scope,
   }).then(function(popover) {
@@ -48,11 +50,12 @@ angular.module('starter.controllers', [])
   $scope.fromGallery = function () {
     // Refer to: http://docs.phonegap.com/en/edge/cordova_camera_camera.md.html#cameraOptions
     var options = {
-      destinationType: navigator.camera.DestinationType.NATIVE_URI,
+//      destinationType: navigator.camera.DestinationType.NATIVE_URI,
+      destinationType: navigator.camera.DestinationType.DATA_URL,
       sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY
     };
     Camera.getPicture(options).then(function(imageURI) {
-      $scope.imageUri = imageURI;
+      $scope.imageUri = "data:image/jpeg;base64," + imageURI;
     }, function(err) {
       alert(err);
     });
@@ -61,6 +64,7 @@ angular.module('starter.controllers', [])
   $scope.fromCamera = function () {
     // Refer to: http://docs.phonegap.com/en/edge/cordova_camera_camera.md.html#cameraOptions
     var options = {
+//      destinationType: navigator.camera.DestinationType.DATA_URL,
 //      destinationType: navigator.camera.DestinationType.FILE_URI,
 //      sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY
     };

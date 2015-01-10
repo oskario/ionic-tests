@@ -1,17 +1,13 @@
 <ion-view view-title="Dashboard">
-  <!--<ion-content class="center">-->
-    <!--<div class="row">-->
-      <!--<div class="col">-->
-        <!--<button class="button button-block button-energized">-->
-          <!--button-energized-->
-        <!--</button>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</ion-content>-->
   <ion-content class="padding">
+
+    <h2 class="text-center positive">You are</h2>
+    <h1 class="text-center positive">{{cashLeft}}</h1>
+    <h2 class="text-center positive">PLN left</h2>
+
     <div class="row">
       <button class="button button-block button-positive" ng-click="addNewBill($event)">
-        Add new bill
+        <i class="icon ion-plus-round"></i> Add new bill
       </button>
     </div>
 
@@ -28,25 +24,12 @@
       <div class="item item-divider">Recent Bills</div>
       <div class="item item-body">
         <div ng-repeat="bill in recentBills">
-          On <b>{{bill.date}}</b> you spent <b>{{bill.total}} {{bill.currency}}</b>.
+          On <b>{{bill.date}}</b> you spent <b>{{bill.total}} {{bill.currency}}</b>
         </div>
       </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Health</div>
-      <div class="item item-body">
-        <div>
-          You ate an apple today!
-        </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>{{messages}}</b> meetings on your calendar tomorrow.
-        </div>
-      </div>
+      <a class="item text-right positive" href="#" ng-click="alert()">
+        See all bills <i class="icon ion-ios-arrow-forward"></i>
+      </a>
     </div>
   </ion-content>
 </ion-view>
