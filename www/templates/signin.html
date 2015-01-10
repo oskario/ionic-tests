@@ -1,0 +1,29 @@
+<ion-view view-title="Sign in">
+    <ion-content class="padding">
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" placeholder="Username" ng-model="user.username">
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="Password" ng-model="user.password">
+            </label>
+            <li class="item item-toggle">
+                Remember me
+                <label class="toggle toggle-positive">
+                    <input type="checkbox">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+        </div>
+        <div class="">
+            <button class="button button-block button-positive" ng-click="signIn(user)">
+                Sign in
+            </button>
+            <!--<p class="text-center">-->
+                <!--<a href="#/forgot-password">Forgot password</a>-->
+            <!--</p>-->
+        </div>
+    </ion-content>
+</ion-view>

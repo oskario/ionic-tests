@@ -1,10 +1,34 @@
 <ion-view view-title="Dashboard">
+  <!--<ion-content class="center">-->
+    <!--<div class="row">-->
+      <!--<div class="col">-->
+        <!--<button class="button button-block button-energized">-->
+          <!--button-energized-->
+        <!--</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</ion-content>-->
   <ion-content class="padding">
+    <div class="row">
+      <button class="button button-block button-positive" ng-click="addNewBill($event)">
+        Add new bill
+      </button>
+    </div>
+
+    <div class="list card" ng-show="imageUri">
+      <div class="item item-image">
+        <img src="{{imageUri}}">
+      </div>
+      <a class="item item-icon-left positive" href="#">
+        <i class="icon ion-checkmark"></i> Scan
+      </a>
+    </div>
+
     <div class="list card">
-      <div class="item item-divider">Recent Updates</div>
+      <div class="item item-divider">Recent Bills</div>
       <div class="item item-body">
-        <div>
-          There is a fire in <b>sector 3</b>
+        <div ng-repeat="bill in recentBills">
+          On <b>{{bill.date}}</b> you spent <b>{{bill.total}} {{bill.currency}}</b>.
         </div>
       </div>
     </div>
@@ -20,7 +44,7 @@
       <div class="item item-divider">Upcoming</div>
       <div class="item item-body">
         <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
+          You have <b>{{messages}}</b> meetings on your calendar tomorrow.
         </div>
       </div>
     </div>
