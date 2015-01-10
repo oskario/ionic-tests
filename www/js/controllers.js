@@ -48,7 +48,7 @@ angular.module('starter.controllers', [])
   $scope.fromGallery = function () {
     // Refer to: http://docs.phonegap.com/en/edge/cordova_camera_camera.md.html#cameraOptions
     var options = {
-      destinationType: navigator.camera.DestinationType.FILE_URI,
+      destinationType: navigator.camera.DestinationType.NATIVE_URI,
       sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY
     };
     Camera.getPicture(options).then(function(imageURI) {
