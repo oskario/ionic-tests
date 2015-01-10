@@ -115,8 +115,27 @@ angular.module('starter.services', [])
 }])
 
 .factory('User', ['$q', function($q) {
-  return {
-    signIn: function(user) {
+  var user = {
+    totalCash: 1250,
+    bills: [
+      {
+        date: "Tuesday",
+        total: 26.13,
+        currency: "PLN"
+      },{
+        date: "Monday",
+        total: 13.24,
+        currency: "PLN"
+      },{
+        date: "Monday",
+        total: 107.76,
+        currency: "PLN"
+      }
+    ]
+  };
+
+  var result = {
+    signIn: function (user) {
       var q = $q.defer();
 
       if (user && user.username !== '' && user.password !== '') {
@@ -126,6 +145,25 @@ angular.module('starter.services', [])
       }
 
       return q.promise;
+    },
+    totalCash: function (newValue) {
+      if (newValue) {
+        user.totalCash = newValue;
+      }
+      return user.totalCash;
+    },
+    bills: function () {
+      return user.bills;
+    },
+    totalExpenses: function () {
+      return _(user.bills)
+              .reduce(function (sum, bill) {
+                return sum + bill.total;
+              }, 0);
+    },
+    cashLeft: function () {
+      return this.totalCash() - this.totalExpenses();
     }
-  }
+  };
+  return result;
 }]);

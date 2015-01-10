@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SignInCtrl', function($scope, $state, $ionicLoading, User) {
+.controller('SignInCtrl', function ($scope, $state, $ionicLoading, User) {
   $scope.signIn = function (user) {
     $ionicLoading.show({
       template: 'Loading...'
@@ -16,30 +16,25 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('DashCtrl', function($scope, $ionicPopover, Camera) {
+.controller('DashCtrl', function ($scope, $ionicPopover, User, Camera) {
   $scope.messages = 120;
 
-  $scope.recentBills = [
-    {
-      date: "Tuesday",
-      total: "26.00",
-      currency: "PLN"
-    },{
-      date: "Monday",
-      total: "13.21",
-      currency: "PLN"
-    },{
-      date: "Monday",
-      total: "107.76",
-      currency: "PLN"
-    }
-  ];
+  $scope.bills = User.bills();
 
-  $scope.cashLeft = 1250.00;
+  $scope.recentBills = _($scope.bills)
+                          .sortBy(function (bill) {
+                            return bill.total;
+                          })
+                          .first(5)
+                          .value();
+
+  $scope.totalExpenses = User.totalExpenses();
+
+  $scope.cashLeft = User.cashLeft();
 
   $ionicPopover.fromTemplateUrl('templates/dialog-new-bill-method.html', {
     scope: $scope,
-  }).then(function(popover) {
+  }).then(function (popover) {
     $scope.popover = popover;
   });
 
@@ -50,13 +45,12 @@ angular.module('starter.controllers', [])
   $scope.fromGallery = function () {
     // Refer to: http://docs.phonegap.com/en/edge/cordova_camera_camera.md.html#cameraOptions
     var options = {
-//      destinationType: navigator.camera.DestinationType.NATIVE_URI,
       destinationType: navigator.camera.DestinationType.DATA_URL,
       sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY
     };
-    Camera.getPicture(options).then(function(imageURI) {
+    Camera.getPicture(options).then(function (imageURI) {
       $scope.imageUri = "data:image/jpeg;base64," + imageURI;
-    }, function(err) {
+    }, function (err) {
       alert(err);
     });
   };
@@ -64,39 +58,35 @@ angular.module('starter.controllers', [])
   $scope.fromCamera = function () {
     // Refer to: http://docs.phonegap.com/en/edge/cordova_camera_camera.md.html#cameraOptions
     var options = {
-//      destinationType: navigator.camera.DestinationType.DATA_URL,
-//      destinationType: navigator.camera.DestinationType.FILE_URI,
-//      sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY
     };
-    Camera.getPicture(options).then(function(imageURI) {
+    Camera.getPicture(options).then(function (imageURI) {
       $scope.imageUri = imageURI;
-    }, function(err) {
+    }, function (err) {
       alert(err);
     });
   };
-
 })
 
-.controller('ExpensesCtrl', function($scope, Chats) {
+.controller('ExpensesCtrl', function ($scope, Chats) {
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
   }
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+.controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('FriendsCtrl', function($scope, Friends) {
+.controller('FriendsCtrl', function ($scope, Friends) {
   $scope.friends = Friends.all();
 })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
+.controller('FriendDetailCtrl', function ($scope, $stateParams, Friends) {
   $scope.friend = Friends.get($stateParams.friendId);
 })
 
-.controller('SettingsCtrl', function($scope) {
+.controller('SettingsCtrl', function ($scope) {
   $scope.settings = {
     enableFriends: true
   };
