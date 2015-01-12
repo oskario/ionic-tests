@@ -1,14 +1,12 @@
 package api
 
+import akka.actor.Actor
 import spray.http.StatusCodes._
 import spray.http._
 import spray.routing._
-import directives.{CompletionMagnet, RouteDirectives}
-import spray.util.{SprayActorLogging, LoggingContext}
-import util.control.NonFatal
-import spray.httpx.marshalling.Marshaller
-import spray.http.HttpHeaders.RawHeader
-import akka.actor.{ActorLogging, Actor}
+import spray.util.{LoggingContext, SprayActorLogging}
+
+import scala.util.control.NonFatal
 
 /**
  * Holds potential error response with the HTTP status and optional body
@@ -85,24 +83,4 @@ class RoutedHttpService(route: Route) extends Actor with HttpService with SprayA
     runRoute(route)(handler, RejectionHandler.Default, context, RoutingSettings.default, LoggingContext.fromActorRefFactory)
 
 
-}
-
-/**
- * Constructs ``CompletionMagnet``s that set the ``Access-Control-Allow-Origin`` header for modern browsers' AJAX
- * requests on different domains / ports.
- */
-trait CrossLocationRouteDirectives extends RouteDirectives {
-
-  implicit def fromObjectCross[T : Marshaller](origin: String)(obj: T) =
-    new CompletionMagnet {
-      def route: StandardRoute = new CompletionRoute(OK,
-        RawHeader("Access-Control-Allow-Origin", origin) :: Nil, obj)
-    }
-
-  private class CompletionRoute[T : Marshaller](status: StatusCode, headers: List[HttpHeader], obj: T)
-    extends StandardRoute {
-    def apply(ctx: RequestContext): Unit = {
-      ctx.complete(status, headers, obj)
-    }
-  }
 }

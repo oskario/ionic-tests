@@ -1,2 +1,27 @@
 run
 ~run
+re-start
+start
+re-start
+reload
+re-start
+reload
+re-start
+reload
+re-start
+reload
+re-start
+reload
+re-start
+reload
+re-start
+reload
+re-start
+clean
+reload
+re-start
+last *:update
+reload
+re-start
+reload
+re-start
