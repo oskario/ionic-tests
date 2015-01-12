@@ -37,6 +37,7 @@ trait BootedCore extends Core {
 trait CoreActors {
   this: Core =>
 
+  val healthCheck  = system.actorOf(Props[HealthCheckActor])
   val registration = system.actorOf(Props[RegistrationActor])
   val messenger    = system.actorOf(Props[MessengerActor])
 

@@ -23,8 +23,4 @@
 [0m[[0mdebug[0m] [0m	/home/oskar/.ivy2/cache/io.spray/spray-json_2.10/jars/spray-json_2.10-1.2.3.jar[0m
 [0m[[0mdebug[0m] [0mWaiting for thread run-main to exit[0m
 [0m[[0mdebug[0m] [0m	Thread run-main exited.[0m
-[0m[[0mdebug[0m] [0mWaiting for thread akka-spray-akka.actor.default-dispatcher-2 to exit[0m
-[0m[[0mdebug[0m] [0m	Thread akka-spray-akka.actor.default-dispatcher-2 exited.[0m
-[0m[[0mdebug[0m] [0mWaiting for thread akka-spray-akka.actor.default-dispatcher-4 to exit[0m
-[0m[[0mdebug[0m] [0m	Thread akka-spray-akka.actor.default-dispatcher-4 exited.[0m
 [0m[[0mdebug[0m] [0mWaiting for thread akka-spray-akka.actor.default-dispatcher-3 to exit[0m
