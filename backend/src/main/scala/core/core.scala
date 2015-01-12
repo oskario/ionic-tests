@@ -40,5 +40,6 @@ trait CoreActors {
   val healthCheck  = system.actorOf(Props[HealthCheckActor])
   val registration = system.actorOf(Props[RegistrationActor])
   val messenger    = system.actorOf(Props[MessengerActor])
+  val recognizer   = system.actorOf(Props[RecognizerActor])
 
 }

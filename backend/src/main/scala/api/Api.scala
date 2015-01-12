@@ -18,7 +18,8 @@ trait Api extends RouteConcatenation {
   val routes =
     new HealthCheckService(healthCheck).route ~
     new RegistrationService(registration).route ~
-    new MessengerService(messenger).route
+    new MessengerService(messenger).route ~
+    new RecognizerService(recognizer).route
 
   val rootService = system.actorOf(Props(new RoutedHttpService(routes)))
 
