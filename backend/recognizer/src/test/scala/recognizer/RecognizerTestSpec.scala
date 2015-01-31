@@ -1,0 +1,5 @@
+package recognizer
+
+class RecognizerTestSpec {
+
+}
