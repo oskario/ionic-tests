@@ -29,6 +29,7 @@ object BackendBuild extends Build {
       libraryDependencies ++= Seq(
         openCv,
         logback,
+        jodaTime,
         scalaTest % "test"
       )
     ),
@@ -59,4 +60,5 @@ object BackendBuild extends Build {
   lazy val openCv = "nu.pattern" % "opencv" % "2.4.9-7"
   lazy val logback = "ch.qos.logback" % "logback-classic" % "1.1.2"
   lazy val scalaTest = "org.scalatest" %% "scalatest" % "2.1.6"
+  lazy val jodaTime = "joda-time" % "joda-time" % "2.7"
 }

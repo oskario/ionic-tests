@@ -12,4 +12,9 @@ object Color {
   }
 }
 
-case class Color(r: Short, g: Short, b: Short)
+case class Color(r: Short, g: Short, b: Short) {
+
+  lazy val average: Short = ((r + g + b) / 3).toShort
+
+  def toArray = Array[Short](b, g, r)
+}
