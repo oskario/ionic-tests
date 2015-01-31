@@ -6,6 +6,10 @@ object Pixel {
     Pixel(Position(x, y), Color(r, g, b))
   }
 
+  def apply(x: Int, y: Int, color: Color): Pixel = {
+    Pixel(Position(x, y), color)
+  }
+
   def apply(x: Int, y: Int, color: Array[Double]): Pixel = {
     Pixel(Position(x, y), Color(color(2), color(1), color(0)))
   }

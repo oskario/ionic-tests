@@ -25,8 +25,25 @@ case class Image(mat: Mat) {
 
   def pixel(x: Int, y: Int): Pixel = Pixel(x, y, mat.get(x, y))
 
+  def pixelOpt(x: Int, y: Int): Option[Pixel] = {
+    if (x < height && x >= 0 && y < width && y >= 0) Some(pixel(x, y))
+    else None
+  }
+
   def update(pixel: Pixel) = {
     mat.put(pixel.x, pixel.y, pixel.color.b, pixel.color.g, pixel.color.r)
+  }
+
+  def update(x: Int, y: Int, color: Color) = {
+    mat.put(x, y, color.b, color.g, color.r)
+  }
+
+  def neighbors(x: Int, y: Int, r: Int): Seq[Pixel] = {
+    val result = for {
+      a <- (x-r) to (x+r)
+      b <- (y-r) to (y+r)
+    } yield pixelOpt(a, b)
+    result.flatten
   }
 
   def toFile(path: String): Image = {
