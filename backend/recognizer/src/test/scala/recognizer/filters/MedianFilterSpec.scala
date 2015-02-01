@@ -13,7 +13,7 @@ class MedianFilterSpec extends WordSpecLike with Matchers with OpenCvLibrary {
 
     s"perform the whole operation under $maxTime milliseconds" in {
       withTime {
-        val filtered = new MedianFilter().run(ExampleImages.`4`.mid)
+        val filtered = new MedianFilter(1).run(ExampleImages.`4`.mid)
         filtered.toFile("out3.jpg")
       } should be < maxTime
     }

@@ -46,6 +46,17 @@ case class Image(mat: Mat) {
     result.flatten
   }
 
+  def histogram: Map[Short, Int] = {
+    val colors = for {
+      a <- x
+      b <- y
+    } yield (pixel(a, b).color.average, 1)
+    val start = (0 to 255).map(_.toShort -> 0).toMap
+    colors.foldLeft(start) { case (map, entry) =>
+      map.updated(entry._1, map(entry._1) + 1)
+    }
+  }
+
   def toFile(path: String): Image = {
     Highgui.imwrite(path, mat)
     this

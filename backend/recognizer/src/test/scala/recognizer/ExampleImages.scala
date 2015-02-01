@@ -11,6 +11,7 @@ object ExampleImages {
   val `1` = Image(getImagePath("4.mid.jpg"))
 
   object `4` {
+    val org = Image(getImagePath("4.jpg"))
     val mid = Image(getImagePath("4.mid.jpg"))
   }
 }

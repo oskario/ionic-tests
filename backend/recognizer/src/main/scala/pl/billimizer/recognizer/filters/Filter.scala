@@ -2,6 +2,15 @@ package pl.billimizer.recognizer.filters
 
 import pl.billimizer.recognizer.models.Image
 
+object Filter {
+
+  def run(input: Image, filters: Seq[Filter]) = {
+    filters.foldLeft(input) { case (image, filter) =>
+      filter.run(image)
+    }
+  }
+}
+
 trait Filter {
 
   /**
